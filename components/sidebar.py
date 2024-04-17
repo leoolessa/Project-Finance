@@ -49,7 +49,7 @@ layout =  dbc.Col([
                     ], width=6),
                     dbc.Col([
                         dbc.Label('Value: '),
-                        dbc.Input(placeholder=' €100,00', id='value_income', value='')
+                        dbc.Input(placeholder=' € 100,00', id='value_income', value='')
                     ], width=6),
                 ]),
                 
@@ -138,7 +138,7 @@ layout =  dbc.Col([
                     ], width=6),
                     dbc.Col([
                         dbc.Label('Value: '),
-                        dbc.Input(placeholder=' €100,00', id='value_expense', value='')
+                        dbc.Input(placeholder=' € 100,00', id='value_expense', value='')
                     ], width=6),
                 ]),
                 
