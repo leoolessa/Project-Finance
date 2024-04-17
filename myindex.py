@@ -7,7 +7,7 @@ import plotly.express as px
 
 from app import *
 from components import dashboards, sidebar, statements
-
+from globals import *
 
 
 
@@ -18,6 +18,11 @@ content = html.Div(id='page-content')
 
 
 app.layout = dbc.Container(children=[
+    dcc.Store(id='store-expenses', data=df_expenses.to_dict()),
+    dcc.Store(id='store-incomes', data=df_incomes.to_dict()),
+    dcc.Store(id='store-cat-expenses', data=df_cat_expenses.to_dict()),
+    dcc.Store(id='store-cat-incomes', data=df_cat_incomes.to_dict()),
+    
     dbc.Row([
         dbc.Col([
             dcc.Location(id='url'),
