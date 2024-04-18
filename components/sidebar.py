@@ -152,7 +152,7 @@ layout =  dbc.Card([
                     
                     dbc.Col([
                         html.Label('Income Category'),
-                        dbc.Select(id='select_income', options=[{'label': i, 'value': i} for i in cat_income], value=cat_income[0])
+                        dbc.Select(id='select_income', options=[{'label': i, 'value': i} for i in cat_income], value=[])
                     ], width=4),
                 ],style={"margin-top": "25px"}), 
                 

@@ -20,10 +20,10 @@ df_incomes_aux = df_incomes.to_dict()
 df_expenses = pd.read_csv("data/df_expenses.csv", index_col=0, parse_dates=True)
 df_expenses_aux = df_expenses.to_dict()
 
-list_incomes = pd.read_csv('data/df_cat_incomes.csv', index_col=0)
+list_incomes = pd.read_csv('data/df_cat_income.csv', index_col=0)
 list_incomes_aux = list_incomes.to_dict()
 
-list_expenses = pd.read_csv('data/df_cat_expenses.csv', index_col=0)
+list_expenses = pd.read_csv('data/df_cat_expense.csv', index_col=0)
 list_expenses_aux = list_expenses.to_dict()
 
 
