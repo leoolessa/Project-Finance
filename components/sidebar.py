@@ -174,7 +174,7 @@ layout =  dbc.Col([
                         dbc.Select(
                             id='select_expense',
                             options=[{'label': i, 'value': i} for i in cat_expense],
-                            value=[])
+                            value=cat_expense[0])
                     ], width=4),
                 ],style={"margin-top": "25px"}), 
                 dbc.Row([
