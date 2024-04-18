@@ -9,6 +9,7 @@ import pandas as pd
 
 from app import app 
 
+
 card_icon ={
     'color':'white',
     'textAlign':'center',

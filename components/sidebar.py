@@ -1,16 +1,21 @@
-import os 
+import os
 import dash
+import json
+import plotly.express as px
 from dash import html, dcc
 from dash.dependencies import Input, Output, State
 import dash_bootstrap_components as dbc
-from app import app 
 
+from app import app
 from datetime import datetime, date
-import plotly.express as px
+
+import pdb
+from dash_bootstrap_templates import ThemeChangerAIO
+
+# ========= DataFrames ========= #
 import numpy as np
-import pandas as pd 
-
-
+import pandas as pd
+from globals import *
 
 
 
@@ -65,21 +70,23 @@ layout =  dbc.Col([
                     ], width=4),
                     
                     dbc.Col([
-                        dbc.Label('Extras'),
+                        dbc.Label('Extra Options'),
                         dbc.Checklist(
-                            options=[],
-                            value=[],
+                            options=[{"label": "Was Received", "value": 1},
+                                    {"label": "Regular Expense", "value": 2}],
+                            value=[1],
                             id='switches-input-income',
                             switch=True
-                        )
+                        ),
                     ], width=4),
                     
                     dbc.Col([
                         html.Label('Income Category'),
                         dbc.Select(
-                            options=[],
-                            value=[],
-                            id='select_income',)
+                            id='select_income',
+                            options=[{'label': i, 'value': i} for i in cat_income],
+                            value=cat_income
+                            )
                     ], width=4),
                 ],style={"margin-top": "25px"}), 
                 dbc.Row([
@@ -154,21 +161,23 @@ layout =  dbc.Col([
                     ], width=4),
                     
                     dbc.Col([
-                        dbc.Label('Extras'),
+                        dbc.Label('Extra Options'),
                         dbc.Checklist(
-                            options=[],
-                            value=[],
+                            options=[{"label": "Was Received", "value": 1},
+                                    {"label": "Regular Expense", "value": 2}],
+                            value=[1],
                             id='switches-input-expense',
                             switch=True
-                        )
+                        ),
                     ], width=4),
                     
                     dbc.Col([
                         html.Label('Expense Category'),
                         dbc.Select(
-                            options=[],
-                            value=[],
-                            id='select_expense',)
+                            id='select_expense',
+                            options=[{'label': i, 'value': i} for i in cat_expense],
+                            value=cat_expense
+                            )
                     ], width=4),
                 ],style={"margin-top": "25px"}), 
                 dbc.Row([
