@@ -81,10 +81,7 @@ layout =  dbc.Col([
                     
                     dbc.Col([
                         html.Label('Income Category'),
-                        dbc.Select(
-                            id='select_income',
-                            options=[{'label': i, 'value': i} for i in cat_income],
-                            value=[])
+                        dbc.Select(id='select_income', options=[{'label': i, 'value': i} for i in cat_income], value=cat_income)
                     ], width=4),
                 ],style={"margin-top": "25px"}), 
                 dbc.Row([
@@ -172,9 +169,7 @@ layout =  dbc.Col([
                     dbc.Col([
                         html.Label('Expense Category'),
                         dbc.Select(
-                            id='select_expense',
-                            options=[{'label': i, 'value': i} for i in cat_expense],
-                            value=cat_expense[0])
+                            id='select_expense', options=[{'label': i, 'value': i} for i in cat_expense], value=cat_expense)
                     ], width=4),
                 ],style={"margin-top": "25px"}), 
                 dbc.Row([
@@ -260,16 +255,71 @@ def toggle_modal(n1, is_open):
         return not is_open
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+# Send income form
+@app.callback(
+    Output('store-income', 'data'),
+
+    Input("salve_income", "n_clicks"),
+
+    [
+        State("txt-income", "value"),
+        State("value_income", "value"),
+        State("date-income", "date"),
+        State("switches-input-income", "value"),
+        State("select_income", "value"),
+        State('store-income', 'data')
+    ]
+)      
+
+  
+def salve_form_income(n, description, value, date, switches, category, dict_income):
+    df_incomes = pd.DataFrame(dict_income)
+
+    if n and not(value == "" or value== None):
+        value = round(float(value), 2)
+        date = pd.to_datetime(date).date()
+        category = category[0] if type(category) == list else category
+
+        completed = 1 if 1 in switches else 0
+        regular = 0 if 2 in switches else 0
+
+        df_incomes.loc[df_incomes.shape[0]] = [value, completed, regular, date, category, description]
+        df_incomes.to_csv("data/df_incomes.csv")
+
+    data_return = df_incomes.to_dict()
+    return data_return
+
+
+# Send Expenses form
+@app.callback(
+    Output('store-expense', 'data'),
+
+    Input("salve_expense", "n_clicks"),
+
+    [
+        State("value_expense", "value"),
+        State("switches-input-expense", "value"),
+        State("select_expense", "value"),
+        State("date-expense", "date"),
+        State("txt-expense", "value"),
+        State('store-expense', 'data')
+    ]
+)
+
+
+def salve_form_expense(n, description, value, date, switches, category, dict_income):
+    df_expenses = pd.DataFrame(dict_income)
+
+    if n and not(value == "" or value== None):
+        value = round(float(value), 2)
+        date = pd.to_datetime(date).date()
+        category = category[0] if type(category) == list else category
+
+        completed = 1 if 1 in switches else 0
+        regular = 0 if 2 in switches else 0
+
+        df_expenses.loc[df_expenses.shape[0]] = [value, completed, regular, date, category, description]
+        df_expenses.to_csv("data/df_incomes.csv")
+
+    data_return = df_expenses.to_dict()
+    return data_return
