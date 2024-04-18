@@ -6,11 +6,10 @@ import pandas as pd
 import plotly.express as px
 
 from app import *
-from components import dashboards, sidebar, statements
+from components import dashboards, statements, sidebar
 from globals import *
 
-import sys
-sys.path.insert(1, 'c:\\Users\\leona\\Documents\\Project-Finance')
+
 
 
 #--Layout--#

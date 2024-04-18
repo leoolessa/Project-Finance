@@ -18,7 +18,6 @@ import pandas as pd
 from globals import *
 
 
-
 #--Layout--#
 layout =  dbc.Col([
     html.H1('MyBudget', className='text-primary'),
@@ -85,8 +84,7 @@ layout =  dbc.Col([
                         dbc.Select(
                             id='select_income',
                             options=[{'label': i, 'value': i} for i in cat_income],
-                            value=cat_income
-                            )
+                            value=[])
                     ], width=4),
                 ],style={"margin-top": "25px"}), 
                 dbc.Row([
@@ -176,8 +174,7 @@ layout =  dbc.Col([
                         dbc.Select(
                             id='select_expense',
                             options=[{'label': i, 'value': i} for i in cat_expense],
-                            value=cat_expense
-                            )
+                            value=[])
                     ], width=4),
                 ],style={"margin-top": "25px"}), 
                 dbc.Row([
