@@ -21,6 +21,7 @@ card_icon ={
     'margin': 'auto'
 }
 
+graph_margin=dict(l=25, r=25, t=25, b=0)
 
 #--Layout--#
 layout = dbc.Col([
@@ -31,7 +32,7 @@ layout = dbc.Col([
             dbc.CardGroup([
                 dbc.Card([
                     html.Legend('Balance'),
-                    html.H5('€ -', id='p-balance-dashboard', style={})
+                    html.H5('€ -', id='p-balance-dashboards', style={})
                 ], style={'padding-left': '20px', 'padding-top': '10px'}),
                 dbc.Card(
                     html.Div(className='fa fa-university', style=card_icon),
@@ -46,7 +47,7 @@ layout = dbc.Col([
             dbc.CardGroup([
                 dbc.Card([
                     html.Legend('Income'),
-                    html.H5('€ -', id='p-income-dashboard', style={})
+                    html.H5('€ -', id='p-income-dashboards', style={})
                 ], style={'padding-left': '20px', 'padding-top': '10px'}),
                 dbc.Card(
                     html.Div(className='fa fa-smile-o', style=card_icon),
@@ -60,7 +61,7 @@ layout = dbc.Col([
             dbc.CardGroup([
                 dbc.Card([
                     html.Legend('Expenses'),
-                    html.H5('€ -', id='p-expense-dashboard', style={})
+                    html.H5('€ -', id='p-expense-dashboards', style={})
                 ], style={'padding-left': '20px', 'padding-top': '10px'}),
                 dbc.Card(
                     html.Div(className='fa fa-meh-o', style=card_icon),
@@ -108,8 +109,7 @@ layout = dbc.Col([
         ], width=4),
         
         dbc.Col(
-            dbc.Card(dcc.Graph(id='graph1'), style={'height': '100%', 'padding': '10px'}), width=8
-        )
+            dbc.Card(dcc.Graph(id='graph1'), style={'height': '100%', 'padding': '10px'}), width=8),
     ], style={'margin': '10px'}),
     
     dbc.Row([
@@ -117,7 +117,7 @@ layout = dbc.Col([
             dbc.Col(dbc.Card(dcc.Graph(id="graph3"), style={"padding": "10px"}), width=3),
             dbc.Col(dbc.Card(dcc.Graph(id="graph4"), style={"padding": "10px"}), width=3),
         ], style={"margin": "10px"})
-],)
+])
 
 
 
@@ -137,7 +137,7 @@ def populate_dropdownvalues(data):
     value = df['Value'].sum()
     val = df.Category.unique().tolist()
 
-    return [([{"label": x, "value": x} for x in df.Category.unique()]), val, f"R$ {value}"]
+    return [([{"label": x, "value": x} for x in df.Category.unique()]), val, f"€ {value}"]
 
 # Dropdown Expense
 @app.callback([Output("dropdown-expense", "options"),
@@ -149,7 +149,7 @@ def populate_dropdownvalues(data):
     value = df['Value'].sum()
     val = df.Category.unique().tolist()
 
-    return [([{"label": x, "value": x} for x in df.Category.unique()]), val, f"R$ {value}"]
+    return [([{"label": x, "value": x} for x in df.Category.unique()]), val, f"€ {value}"]
 
 # VALOR - balance
 @app.callback(
@@ -164,7 +164,7 @@ def saldo_total(expense, income):
 
     return f"R$ {value}"
     
-# Gráfico 1
+# Graph 1
 @app.callback(
     Output('graph1', 'figure'),
     [Input('store-expense', 'data'),
@@ -203,7 +203,7 @@ def update_output(data_expense, data_income, expense, income, theme):
     fig.update_layout(paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)')
     return fig
 
-# Gráfico 2
+# Graph 2
 @app.callback(
     Output('graph2', 'figure'),
     [Input('store-income', 'data'),
@@ -236,7 +236,7 @@ def graph2_show(data_expense, data_income, expense, income, start_date, end_date
     return fig
 
 
-# Gráfico 3
+# Graph 3
 @app.callback(
     Output('graph3', "figure"),
     [Input('store-expense', 'data'),
@@ -254,7 +254,7 @@ def pie_income(data_income, income, theme):
                   
     return fig    
 
-# Gráfico 4
+# Graph 4
 @app.callback(
     Output('graph4', "figure"),
     [Input('store-expense', 'data'),
