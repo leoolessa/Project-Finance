@@ -12,7 +12,7 @@ from datetime import datetime, date
 import pdb
 from dash_bootstrap_templates import ThemeChangerAIO
 
-# ========= DataFrames ========= #
+
 import numpy as np
 import pandas as pd
 from globals import *
@@ -20,7 +20,7 @@ from globals import *
 
 #--Layout--#
 layout =  dbc.Col([
-    html.H1('MyBudget', className='text-primary'),
+    html.H1('Smart Finance', className='text-primary'),
     html.P('By Lessa', className='text-info'),
     html.Hr(),
     
@@ -54,7 +54,7 @@ layout =  dbc.Col([
                     dbc.Col([
                         dbc.Label('Value: '),
                         dbc.Input(placeholder=' € 100,00', id='value_income', value='')
-                    ], width=6),
+                    ], width=6)
                 ]),
                 
                 dbc.Row([
@@ -75,8 +75,7 @@ layout =  dbc.Col([
                                     {"label": "Regular Expense", "value": 2}],
                             value=[1],
                             id='switches-input-income',
-                            switch=True
-                        ),
+                            switch=True),
                     ], width=4),
                     
                     dbc.Col([
@@ -84,6 +83,7 @@ layout =  dbc.Col([
                         dbc.Select(id='select_income', options=[{'label': i, 'value': i} for i in cat_income], value=cat_income)
                     ], width=4),
                 ],style={"margin-top": "25px"}), 
+                
                 dbc.Row([
                     dbc.Accordion([
                         dbc.AccordionItem(children=[
@@ -96,6 +96,7 @@ layout =  dbc.Col([
                                     html.Br(),
                                     html.Div(id='category-div-add-income', style={}),
                                 ], width=6),
+                                
                                 dbc.Col([
                                     html.Label('Remove categories', style={'color':'red'}),
                                     dbc.Checklist(
@@ -103,12 +104,13 @@ layout =  dbc.Col([
                                         value=[],
                                         id='checklist-selected-style-income',
                                         label_checked_style={'color': 'red'},
-                                        input_checked_style={'backgroundColor': 'blue', 'borderColor':'orange'}
+                                        input_checked_style={'backgroundColor': 'blue', 'borderColor':'orange'},
                                     ),
-                                    dbc.Button('Remove', color='warning', id='remove-category-income', style={'margin-top': '20px'})
+                                    dbc.Button('Remove', color='warning', id='remove-category-income', style={'margin-top': '20px'}),
                                 ], width=6)
                             ]),
-                        ], title='Add/Remove Categories'),
+                        ], title='Add/Remove Categories',
+                        ),
                     ], flush=True, start_collapsed=True, id='accordion-income'),
                     
                         html.Div(id='id_test_income', style={'padding-top': '20px'}),
@@ -141,7 +143,7 @@ layout =  dbc.Col([
                     dbc.Col([
                         dbc.Label('Value: '),
                         dbc.Input(placeholder=' € 100,00', id='value_expense', value='')
-                    ], width=6),
+                    ], width=6)
                 ]),
                 
                 dbc.Row([
@@ -162,16 +164,15 @@ layout =  dbc.Col([
                                     {"label": "Regular Expense", "value": 2}],
                             value=[1],
                             id='switches-input-expense',
-                            switch=True
-                        ),
+                            switch=True),
                     ], width=4),
                     
                     dbc.Col([
                         html.Label('Expense Category'),
-                        dbc.Select(
-                            id='select_expense', options=[{'label': i, 'value': i} for i in cat_expense], value=cat_expense)
+                        dbc.Select(id='select_expense', options=[{'label': i, 'value': i} for i in cat_expense], value=cat_expense)
                     ], width=4),
                 ],style={"margin-top": "25px"}), 
+                
                 dbc.Row([
                     dbc.Accordion([
                         dbc.AccordionItem(children=[
@@ -184,6 +185,7 @@ layout =  dbc.Col([
                                     html.Br(),
                                     html.Div(id='category-div-add-expense', style={}),
                                 ], width=6),
+                                
                                 dbc.Col([
                                     html.Label('Remove categories', style={'color':'red'}),
                                     dbc.Checklist(

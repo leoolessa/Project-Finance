@@ -5,7 +5,7 @@ import os
 if ('data/df_expenses.csv' in os.listdir()) and ('data/df_incomes.csv' in os.listdir()):
     df_expenses = pd.read_csv('data/df_expenses.csv', index_col=0, parse_dates=True)
     df_incomes = pd.read_csv('data/df_incomes.csv', index_col=0, parse_dates=True)
-    
+    df_incomes.info()
 else:
     data_structure = {
         'Value':[],
