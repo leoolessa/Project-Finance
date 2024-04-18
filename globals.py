@@ -5,7 +5,11 @@ import os
 if ('data/df_expenses.csv' in os.listdir()) and ('data/df_incomes.csv' in os.listdir()):
     df_expenses = pd.read_csv('data/df_expenses.csv', index_col=0, parse_dates=True)
     df_incomes = pd.read_csv('data/df_incomes.csv', index_col=0, parse_dates=True)
-    df_incomes.info()
+    df_expenses['Date'] = pd.to_datetime(df_expenses['Date'])
+    df_incomes['Date'] = pd.to_datetime(df_incomes['Date'])
+    df_expenses["Date"] = df_expenses["Date"].apply(lambda x: x.date())
+    df_incomes["Date"] = df_incomes["Date"].apply(lambda x: x.date())
+
 else:
     data_structure = {
         'Value':[],
@@ -30,7 +34,7 @@ if ('data/df_cat_expense.csv' in os.listdir()) and ('data/df_cat_income.csv' in 
 else:
     cat_expense = {'Category': ['Rent', 'Bills', 'Supermarket', 'Wallet', 'Travels', 'Activities', 'Health']}
     cat_income = {'Category': ['Salary', 'Investments', 'Extra Earnings']}  
-     
+    
     df_cat_expense = pd.DataFrame(cat_expense, columns=['Category'])
     df_cat_income = pd.DataFrame(cat_income, columns=['Category']) 
     df_cat_expense.to_csv('data/df_cat_expense.csv')
